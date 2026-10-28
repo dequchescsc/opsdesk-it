@@ -23,7 +23,7 @@ drop policy if exists "Team members can create tasks" on public.tasks;
 drop policy if exists "Team members can update tasks" on public.tasks;
 drop policy if exists "Team members can delete tasks" on public.tasks;
 create policy "Team members can view tasks" on public.tasks for select to authenticated using (
-  case when lower(coalesce(auth.jwt()->>'email', '')) = 'opsdesk-demo@example.com' then is_demo else not is_demo end
+  not is_demo
 );
 create policy "Team members can create tasks" on public.tasks for insert to authenticated with check (
   lower(coalesce(auth.jwt()->>'email', '')) <> 'opsdesk-demo@example.com' and not is_demo

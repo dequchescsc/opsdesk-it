@@ -1,24 +1,19 @@
-# OpsDesk IT shared task manager
+# OpsDesk IT task manager
 
 **Live app:** https://dequchescsc.github.io/opsdesk-it/
 
-OpsDesk is a browser-based IT task queue with an overview dashboard, filters, and a kanban board. Team tasks are stored in Supabase and sync between signed-in team accounts.
+OpsDesk is a browser-based IT task queue with an overview dashboard, filters, and a kanban board. The owner manages one shared task queue through a personal account.
 
-## Demo access
+## Owner access
 
-A read-only demonstration account is available for visitors:
+The project owner signs in with their own account to create, edit, and delete tasks. Open sign-ups are disabled. The owner can add and update tasks at any time; signed-in sessions share changes through Supabase Realtime.
 
-- Email: `opsdesk-demo@example.com`
-- Password: supplied directly by the project owner
+## Read-only viewer access
 
-The demo login sees only the sample queue. Database row-level security prevents it from reading team tasks or creating, editing, or deleting any tasks. Do not add the demo password to this public repository.
-
-## Team access
-
-Open sign-ups are disabled. The project owner can invite teammates in **Supabase -> Authentication -> Users -> Add user**. Teammates sign in to the live app with their own account. Team accounts can read, create, edit, and delete the team task queue.
+A read-only viewer login is available for sharing the owner's task queue: `opsdesk-demo@example.com`. Give its password directly to a viewer; never put that password in this public repository. Viewer access is read-only and limited by database row-level security to the owner's tasks. It cannot see demo seed rows or change tasks.
 
 The app uses a browser-safe Supabase publishable key. That key is public by design; row-level security enforces access. Never publish the Supabase database password or a secret/service-role API key.
 
 ## Database
 
-The repository includes `supabase-setup.sql`, which creates the `public.tasks` table, row-level security policies, the isolated demo sample queue, and the Realtime publication entry. The setup has already been applied to the hosted Supabase project.
+The repository includes `supabase-setup.sql`, which creates the `public.tasks` table, row-level security policies, a private sample seed queue, and the Realtime publication entry. The setup has been applied to the hosted Supabase project.
